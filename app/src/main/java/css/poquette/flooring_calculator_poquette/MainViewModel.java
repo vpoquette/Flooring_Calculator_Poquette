@@ -9,4 +9,7 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
     }
+
+    // hi Tom
+    // fun fact: sharks are older than the North Star
 }

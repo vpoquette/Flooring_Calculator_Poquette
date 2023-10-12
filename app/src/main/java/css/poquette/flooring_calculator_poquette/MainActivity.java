@@ -22,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+            // we're not really using this are we
 
-        setUpButton();
+        setUpButton(); // separating the button creation + function into another method
     }
 
     private void setUpButton() {
+        // simple variables
         button = findViewById(R.id.showResult);
         length = findViewById(R.id.lengthInput);
         width = findViewById(R.id.widthInput);
@@ -34,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("CIS 3334 Flooring", "showResult clicked");   // log button click for debugging using "CIS 3334 Flooring" tag
-                Intent detailActIntent = new Intent(this, ResultActivity.class);
-                detailActIntent.putExtra("length", length);
-                detailActIntent.putExtra("width", width);
-                startActivity(detailActIntent);
-                //mainViewModel.placeOrder();
+                Log.d("CIS 3334 Flooring", "showResult clicked");   // debug check
+                Intent detailActIntent = new Intent(MainActivity.this, ResultActivity.class); // initialize the intent
+                // pass data to result activity
+                detailActIntent.putExtra("length", Double.parseDouble(length.getText().toString())); // no longer simple variables
+                detailActIntent.putExtra("width", Double.parseDouble(width.getText().toString()));
+                startActivity(detailActIntent); // move to result activity
             }
         });
     }
